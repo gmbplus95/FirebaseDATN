@@ -8,62 +8,68 @@
     tools:context="com.example.admin.firebasedemo.Register_Activity"
     android:background="@color/Orange">
     <ImageView
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"/>
-    <TextView
 
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/White"
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email Address"
-        android:textSize="25dp"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="16dp" />
     <EditText
 
         android:id="@+id/txt_emailRegister"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_below="@+id/textView"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="31dp"
-        android:layout_below="@+id/textView"
         tools:layout_editor_absoluteY="53dp" />
-    <TextView
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/White"
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_emailRegister"
-        android:text="Password"
-        android:textSize="25dp"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="113dp" />
+
     <EditText
         android:id="@+id/txt_passwordRegister"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_below="@+id/textView2"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="32dp"
-        android:layout_below="@+id/textView2"
         tools:layout_editor_absoluteY="156dp" />
-    <Button
+    <LinearLayout
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:gravity="center"
-        android:textColor="@color/White"
-        android:background="@color/buttoncolor"
-        android:layout_below="@id/txt_passwordRegister"
-        android:id="@+id/btn_Register2"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:onClick="Register_click"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="214dp" />
+        >
+
+        <Button
+            android:id="@+id/btn_Register2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/buttoncolor"
+            android:gravity="center"
+            android:onClick="Register_click"
+            android:text="Register"
+            android:textColor="@color/White"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="214dp" />
+
+        <Button
+            android:id="@+id/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="65.04"
+            android:background="@color/buttoncolor"
+            android:onClick="forgot_onclick"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:text="Resend Password"
+            android:textColor="@color/White" />
+    </LinearLayout>
+
+
 </LinearLayout>

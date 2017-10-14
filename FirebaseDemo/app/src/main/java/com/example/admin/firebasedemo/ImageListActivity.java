@@ -52,9 +52,10 @@ public class ImageListActivity extends AppCompatActivity {
                         Intent a=new Intent(ImageListActivity.this,fullImage.class);
                         a.putExtra("img",c.getUrl());
                         startActivity(a);
-//                        Toast.makeText(ImageListActivity.this,"Image: "+c.getName(),Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 });
+
             }
 
             @Override

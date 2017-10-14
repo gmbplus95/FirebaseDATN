@@ -2,12 +2,14 @@ package com.example.admin.firebasedemo;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,8 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -36,8 +41,6 @@ public class Logged_Activity extends AppCompatActivity {
     private ImageView imageView;
     private EditText txtImageName;
     private Uri imgUri;
-
-
     public static final String FB_STORAGE_PATH="image/";
     public static final String FB_DATABASE_PATH="image";
     public static final int REQUEST_CODE=1234;
@@ -51,7 +54,7 @@ public class Logged_Activity extends AppCompatActivity {
         mDatabaseRef= FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
         imageView= (ImageView) findViewById(R.id.imageView);
         txtImageName= (EditText) findViewById(R.id.txtImageName);
-
+        imageView.setImageResource(0);
     }
 
     public void browser_onclick(View view) {
@@ -59,8 +62,6 @@ public class Logged_Activity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Image"),REQUEST_CODE);
-
-
     }
 
     @Override
@@ -89,15 +90,16 @@ public class Logged_Activity extends AppCompatActivity {
         if (TextUtils.isEmpty(txtImageName.getText().toString())) {
             txtImageName.setError("Ban Chua Nhap Ten Anh");
             return;
-        } else {
+        } else
+            {
             if (imgUri != null) {
                 final ProgressDialog dialog = new ProgressDialog(this);
                 dialog.setTitle("Uploading...");
                 dialog.show();
-                StorageReference ref = mStorageRef.child(FB_STORAGE_PATH + System.currentTimeMillis() + "." + getImagetxt(imgUri));
-                ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                StorageReference ref = mStorageRef.child(FB_STORAGE_PATH + txtImageName.getText().toString().trim() + "." + getImagetxt(imgUri));
+                        ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         dialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Upload Successfully", Toast.LENGTH_SHORT).show();
                         ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString());
@@ -129,8 +131,28 @@ public class Logged_Activity extends AppCompatActivity {
     }
     public void onBackPressed()
     {
-        Intent intent = new Intent(Logged_Activity.this,Login_Activity.class);
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Bạn muốn thoát khỏi chương trình?");
+        builder.setCancelable(true);
+        builder.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        LoginManager.getInstance().logOut();
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+                    }
+                });
+
+        builder.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert12 = builder.create();
+        alert12.show();
     }
 
     public void showimg_onclick(View view) {

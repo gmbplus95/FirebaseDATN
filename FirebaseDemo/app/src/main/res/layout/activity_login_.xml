@@ -1,89 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fb="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.example.admin.firebasedemo.Register_Activity"
     android:background="@color/Orange">
+
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        />
-    <TextView
-        android:layout_marginLeft="5dp"
-        android:id="@+id/textView3"
-        android:textColor="@color/White"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email Address"
-        android:textSize="25dp"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginTop="5dp" />
 
     <EditText
 
         android:id="@+id/txt_emailLogin"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_below="@+id/textView3"
         android:ems="10"
+        android:hint="Your Email"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="53dp"
-        android:layout_below="@+id/textView3"
-        />
-    <TextView
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/White"
-        android:layout_below="@+id/txt_emailLogin"
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:textSize="25dp"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="113dp" />
+        tools:layout_editor_absoluteY="53dp" />
+
     <EditText
         android:id="@+id/txt_passwordLogin"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_below="@+id/textView4"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="156dp"
-        android:layout_below="@+id/textView4"/>
+        tools:layout_editor_absoluteY="156dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
-            android:textColor="@color/White"
-            android:background="@color/buttoncolor"
-            android:layout_below="@id/txt_passwordLogin"
+            android:layout_weight="1"
             android:id="@+id/btn_Login2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_passwordLogin"
             android:layout_marginLeft="5dp"
-            android:layout_width="181dp"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:onClick="Login_Click"
-            tools:layout_editor_absoluteX="147dp"
-            tools:layout_editor_absoluteY="214dp"
-            />
-        <Button
-            android:layout_marginRight="5dp"
-            android:id="@+id/NeedAccount"
-            android:onClick="reg_onclick"
-            android:textColor="@color/White"
-            android:layout_marginLeft="10dp"
             android:background="@color/buttoncolor"
-            android:layout_width="match_parent"
+            android:onClick="Login_Click"
+            android:text="Login"
+            android:textColor="@color/White"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="214dp" />
+
+        <Button
+            android:id="@+id/NeedAccount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't Have Account"
-            />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/buttoncolor"
+            android:onClick="reg_onclick"
+            android:text="No account, Sign up!"
+            android:textColor="@color/White" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.facebook.login.widget.LoginButton
+            android:textSize="23dp"
+            android:id="@+id/btnLoginFb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>
+

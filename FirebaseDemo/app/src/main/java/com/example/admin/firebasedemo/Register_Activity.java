@@ -71,4 +71,9 @@ public class Register_Activity extends AppCompatActivity {
         Intent intent = new Intent(Register_Activity.this,Login_Activity.class);
         startActivity(intent);
     }
+
+    public void forgot_onclick(View view) {
+        Intent i = new Intent(Register_Activity.this,Password_Resend.class);
+        startActivity(i);
+    }
 }
