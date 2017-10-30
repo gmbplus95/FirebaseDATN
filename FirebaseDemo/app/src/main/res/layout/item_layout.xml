@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="serif"
         android:text="Image Name"
         android:textAlignment="center"
         android:textSize="25dp" />

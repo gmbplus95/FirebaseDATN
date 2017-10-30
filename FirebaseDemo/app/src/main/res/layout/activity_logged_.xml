@@ -3,62 +3,112 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/White"
     tools:context="com.example.admin.firebasedemo.Logged_Activity">
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
-        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:fontFamily="serif"
+        android:text="Xin chào!"
+        android:textColor="@color/Orange"
+        android:textSize="14sp"
         tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:textColor="@color/Orange"/>
+        tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/Email_logged"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView5"
+        android:layout_gravity="center"
+        android:fontFamily="serif"
         android:text="Email"
-        android:textSize="25sp"
+        android:textColor="@color/Orange"
+        android:textSize="14sp"
         tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="60dp"
-        android:textColor="@color/Orange"/>
+        tools:layout_editor_absoluteY="60dp" />
+
     <Button
-        android:background="@color/buttoncolor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:background="@color/buttoncolor"
+        android:fontFamily="serif"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:onClick="browser_onclick"
-        android:text="Choose image to upload"/>
+        android:text="Choose image to upload"
+        android:visibility="visible" />
+
     <ImageView
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
+
+        android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:id="@+id/imageView"/>
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp" />
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/txtImageName"
-        android:textColor="@color/black"/>
-    <Button
-        android:background="@color/buttoncolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Upload"
-        android:onClick="Upload_onclick"
-        android:layout_marginBottom="5dp"/>
-    <Button
-        android:background="@color/buttoncolor"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/check_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Show Image Uploaded"
-        android:onClick="showimg_onclick"/>
+        android:textColor="@color/black"
+        android:text="Description"/>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="25dp"
+            android:background="@color/buttoncolor"
+            android:fontFamily="serif"
+            android:text="Check"
+            />
+
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"
+            android:background="@color/buttoncolor"
+            android:fontFamily="serif"
+            android:onClick="Upload_onclick"
+            android:text="Upload"
+            android:visibility="visible" />
+
+        <Button
+
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:background="@color/buttoncolor"
+            android:fontFamily="serif"
+            android:onClick="showimg_onclick"
+            android:text="Uploaded Images"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
 </LinearLayout>

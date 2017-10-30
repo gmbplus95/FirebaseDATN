@@ -21,6 +21,7 @@
         android:layout_height="45dp"
         android:layout_below="@+id/textView3"
         android:ems="10"
+        android:fontFamily="serif"
         android:hint="Your Email"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="31dp"
@@ -32,6 +33,7 @@
         android:layout_height="46dp"
         android:layout_below="@+id/textView4"
         android:ems="10"
+        android:fontFamily="serif"
         android:hint="Password"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="32dp"
@@ -44,13 +46,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_weight="1"
             android:id="@+id/btn_Login2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_passwordLogin"
             android:layout_marginLeft="5dp"
+            android:layout_weight="1"
             android:background="@color/buttoncolor"
+            android:fontFamily="serif"
             android:onClick="Login_Click"
             android:text="Login"
             android:textColor="@color/White"
@@ -65,6 +68,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@color/buttoncolor"
+            android:fontFamily="serif"
             android:onClick="reg_onclick"
             android:text="No account, Sign up!"
             android:textColor="@color/White" />
@@ -76,11 +80,13 @@
         android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.facebook.login.widget.LoginButton
-            android:textSize="23dp"
             android:id="@+id/btnLoginFb"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:textSize="23dp" />
     </LinearLayout>
 
 </LinearLayout>

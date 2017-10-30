@@ -4,7 +4,7 @@
     package="com.example.admin.firebasedemo">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
-    <uses-sdk tools:overrideLibrary="com.jsibbold.zoomage" />
+    <uses-sdk tools:overrideLibrary="com.jsibbold.zoomage,com.microsoft.projectoxford.vision" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -18,7 +18,6 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <activity android:name=".Login_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
