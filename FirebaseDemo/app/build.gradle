@@ -42,7 +42,7 @@ dependencies {
     compile 'com.jsibbold:zoomage:1.1.0'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     testCompile 'junit:junit:4.12'
-    compile 'com.microsoft.projectoxford:vision:1.0.374'
+    compile 'com.microsoft.projectoxford:vision:1.0.393'
 }
 
 apply plugin: 'com.google.gms.google-services'

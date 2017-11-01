@@ -36,15 +36,16 @@ import com.microsoft.projectoxford.vision.VisionServiceClient;
 import com.microsoft.projectoxford.vision.VisionServiceRestClient;
 import com.microsoft.projectoxford.vision.contract.AnalysisResult;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
+
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
 
 public class Logged_Activity extends AppCompatActivity {
-    public VisionServiceClient vsc =new VisionServiceRestClient("a20888090e864633b0abe9441bd70e63","https://westcentralus.api.cognitive.microsoft.com/vision/v1.0");
+    private VisionServiceClient vsc;
     private TextView email_logged;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
@@ -56,7 +57,6 @@ public class Logged_Activity extends AppCompatActivity {
     public static final int REQUEST_CODE = 1234;
     private Button btn_check;
     private Button btn_upload;
-    private Button btn_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,6 @@ public class Logged_Activity extends AppCompatActivity {
         txtImageName = (EditText) findViewById(R.id.txtImageName);
         btn_check =findViewById(R.id.btn_check);
         btn_upload=findViewById(R.id.button3);
-        btn_view=findViewById(R.id.button2);
         btn_check.setEnabled(false);
     }
 
@@ -90,65 +89,72 @@ public class Logged_Activity extends AppCompatActivity {
                 btn_upload.setEnabled(true);
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
                 imageView.setImageBitmap(bm);
-                //convert image to stream
-                ByteArrayOutputStream outputStream= new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.JPEG,80,outputStream);
-                final ByteArrayInputStream inputStream=new ByteArrayInputStream(outputStream.toByteArray());
+                final ByteArrayInputStream inputStream=new ByteArrayInputStream(getBytesFromBitmap(bm));
                 btn_check.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final AsyncTask<InputStream,String,String> visionTask=new AsyncTask<InputStream, String, String>() {
-                            ProgressDialog mdialog=new ProgressDialog(Logged_Activity.this);
-                            @Override
-                            protected String doInBackground(InputStream... params) {
-                                try {
-                                    publishProgress("Checking...");
-                                    String[] features={"Adult"};
-                                    String[] details={};
-                                    AnalysisResult result=vsc.analyzeImage(params[0],features,details);
-                                    String strResult=new Gson().toJson(result);
-                                    return strResult;
-                                } catch (Exception e) {
-                                      return null;
-                                }
-                            }
-
-                            @Override
-                            protected void onPreExecute() {
-                                mdialog.show();
-                            }
-
-                            @Override
-                            protected void onPostExecute(String s) {
-                                mdialog.dismiss();
-                                AnalysisResult result=new Gson().fromJson(s,AnalysisResult.class);
-                                TextView txtdetail=findViewById(R.id.check_detail);
-                                if(result.adult.isAdultContent==true) {
-                                    txtdetail.setText("Adult Content");
-                                    Toast.makeText(Logged_Activity.this,"Ảnh không được chấp nhận!",Toast.LENGTH_SHORT).show();
-                                    btn_check.setEnabled(false);
-                                    btn_upload.setEnabled(false);
-                                }
-                                else if(result.adult.isRacyContent==true) {
-                                    txtdetail.setText("Racy Content");
-                                    Toast.makeText(Logged_Activity.this,"Ảnh không được chấp nhận!",Toast.LENGTH_SHORT).show();
-                                    btn_check.setEnabled(false);
-                                    btn_upload.setEnabled(false);
-                                } else {
-                                    txtdetail.setText("Accepted !");
-                                    Toast.makeText(Logged_Activity.this,"Ảnh được chấp nhận!",Toast.LENGTH_SHORT).show();
-                                    btn_upload.setEnabled(true);
+                            final AsyncTask<InputStream, String, String> visionTask = new AsyncTask<InputStream, String, String>() {
+                                ProgressDialog mdialog = new ProgressDialog(Logged_Activity.this);
+                                @Override
+                                protected String doInBackground(InputStream... params) {
+                                    try {
+                                        if(vsc==null) {
+                                            vsc = new VisionServiceRestClient(getString(R.string.sub_key),getString(R.string.end_point));
+                                        }
+                                        publishProgress("Waiting...");
+                                        String[] features = {"Adult"};
+                                        String[] details = {};
+                                        AnalysisResult result = vsc.analyzeImage(inputStream,features, details);
+                                        String strResult = new Gson().toJson(result);
+                                        return strResult;
+                                    } catch (Exception e) {
+                                        return null;
+                                    }
                                 }
 
-                            }
+                                @Override
+                                protected void onPreExecute() {
+                                    mdialog.show();
+                                }
 
-                            @Override
-                            protected void onProgressUpdate(String... values) {
-                                mdialog.setMessage(values[0]);
-                            }
-                        };
-                        visionTask.execute(inputStream);
-                    }
+                                @Override
+                                protected void onPostExecute(String s) {
+                                    super.onPostExecute(s);
+                                    AnalysisResult result = new Gson().fromJson(s, AnalysisResult.class);
+                                    if(result!=null) {
+                                        mdialog.dismiss();
+                                        TextView txtdetail = findViewById(R.id.check_detail);
+                                        if (result.adult.isAdultContent == true) {
+                                            txtdetail.setText("Adult Content");
+                                            Toast.makeText(Logged_Activity.this, "Ảnh không được chấp nhận!", Toast.LENGTH_SHORT).show();
+                                            btn_check.setEnabled(false);
+                                            btn_upload.setEnabled(false);
+                                        } else if (result.adult.isRacyContent == true) {
+                                            txtdetail.setText("Racy Content");
+                                            Toast.makeText(Logged_Activity.this, "Ảnh không được chấp nhận!", Toast.LENGTH_SHORT).show();
+                                            btn_check.setEnabled(false);
+                                            btn_upload.setEnabled(false);
+                                        } else {
+                                            txtdetail.setText("Accepted !");
+                                            Toast.makeText(Logged_Activity.this, "Ảnh được chấp nhận!", Toast.LENGTH_SHORT).show();
+                                            btn_upload.setEnabled(true);
+                                        }
+                                    }
+                                    else {
+                                        Toast.makeText(Logged_Activity.this,"Try again later!",Toast.LENGTH_LONG).show();
+                                        imageView.setImageBitmap(null);
+                                        mdialog.dismiss();
+                                    }
+                                }
+
+                                @Override
+                                protected void onProgressUpdate(String... values) {
+                                    mdialog.setMessage(values[0]);
+                                }
+                            };
+                            visionTask.execute(inputStream);
+                        }
+
 
                 });
             } catch (FileNotFoundException e) {
@@ -246,6 +252,13 @@ public class Logged_Activity extends AppCompatActivity {
         btn_upload.setEnabled(false);
         super.onResume();
     }
+
+    public byte[] getBytesFromBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,80, stream);
+        return stream.toByteArray();
+    }
+
 }
 
 

@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/download"
         android:title="Download"> </item>
-    <item android:title="Delete"
-        android:id="@+id/delete">
+    <item android:title="Report"
+        android:id="@+id/report">
     </item>
     <item android:id="@+id/share"
         android:title="Share"></item>
