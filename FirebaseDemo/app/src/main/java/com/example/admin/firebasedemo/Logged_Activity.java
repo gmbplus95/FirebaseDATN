@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -51,6 +52,7 @@ public class Logged_Activity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private ImageView imageView;
     private EditText txtImageName;
+    private EditText txtDesc;
     private Uri imgUri;
     public static final String FB_STORAGE_PATH = "image/";
     public static final String FB_DATABASE_PATH = "image";
@@ -61,15 +63,17 @@ public class Logged_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_);
-        email_logged = (TextView) findViewById(R.id.Email_logged);
+        email_logged=findViewById(R.id.Email_logged);
         email_logged.setText(getIntent().getExtras().getString("Email"));
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
         imageView = (ImageView) findViewById(R.id.imageView);
         txtImageName = (EditText) findViewById(R.id.txtImageName);
+        txtDesc=findViewById(R.id.txtDescrip);
         btn_check =findViewById(R.id.btn_check);
         btn_upload=findViewById(R.id.button3);
         btn_check.setEnabled(false);
+
     }
 
     public void browser_onclick(View view) {
@@ -95,6 +99,7 @@ public class Logged_Activity extends AppCompatActivity {
                     public void onClick(View view) {
                             final AsyncTask<InputStream, String, String> visionTask = new AsyncTask<InputStream, String, String>() {
                                 ProgressDialog mdialog = new ProgressDialog(Logged_Activity.this);
+                                @Nullable
                                 @Override
                                 protected String doInBackground(InputStream... params) {
                                     try {
@@ -162,8 +167,6 @@ public class Logged_Activity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
@@ -178,7 +181,11 @@ public class Logged_Activity extends AppCompatActivity {
         if (TextUtils.isEmpty(txtImageName.getText().toString())) {
             txtImageName.setError("Ban Chua Nhap Ten Anh");
             return;
-        } else {
+        } else  if (TextUtils.isEmpty(txtDesc.getText().toString())) {
+            txtDesc.setError("Ban Chua Nhap Ten Anh");
+            return;}
+
+        else {
             if (imgUri != null) {
                 final ProgressDialog dialog = new ProgressDialog(this);
                 dialog.setTitle("Uploading...");
@@ -189,7 +196,7 @@ public class Logged_Activity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         dialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Upload Successfully", Toast.LENGTH_SHORT).show();
-                        ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString());
+                        ImageUpload imageUpload = new ImageUpload(txtImageName.getText().toString(), taskSnapshot.getDownloadUrl().toString(),txtDesc.getText().toString(),email_logged.getText().toString());
                         String uploadID = mDatabaseRef.push().getKey();
                         mDatabaseRef.child(uploadID).setValue(imageUpload);
 
@@ -242,6 +249,7 @@ public class Logged_Activity extends AppCompatActivity {
         alert12.show();
     }
 
+
     public void showimg_onclick(View view) {
         Intent i = new Intent(Logged_Activity.this, ImageListActivity.class);
         startActivity(i);
@@ -259,6 +267,11 @@ public class Logged_Activity extends AppCompatActivity {
         return stream.toByteArray();
     }
 
+    public void myimage_onclick(View view) {
+        Intent i = new Intent(Logged_Activity.this, MyImgList.class);
+        i.putExtra("email",email_logged.getText().toString());
+        startActivity(i);
+    }
 }
 
 

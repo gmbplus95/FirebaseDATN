@@ -41,8 +41,8 @@ dependencies {
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.jsibbold:zoomage:1.1.0'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-    testCompile 'junit:junit:4.12'
     compile 'com.microsoft.projectoxford:vision:1.0.393'
+    testCompile 'junit:junit:4.12'
 }
 
 apply plugin: 'com.google.gms.google-services'

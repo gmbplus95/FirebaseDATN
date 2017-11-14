@@ -1,8 +1,6 @@
 package com.example.admin.firebasedemo;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -40,7 +38,11 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
         View v=inflater.inflate(resource,null);
         TextView txtName=v.findViewById(R.id.imgName);
         ImageView img =v.findViewById(R.id.img_View);
-        txtName.setText(listImage.get(position).getName());
+        TextView txtDesc=v.findViewById(R.id.imgDesc);
+        TextView txtEmail=v.findViewById(R.id.imgEmail);
+        txtName.setText("Tên ảnh: "+ listImage.get(position).getName());
+        txtDesc.setText("Mô tả: " +listImage.get(position).getDescription());
+        txtEmail.setText("Upload By: "+ listImage.get(position).getEmail());
         Glide.with(context)
                 .load(listImage.get(position)
                         .getUrl())
