@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.admin.firebasedemo.Register_Activity"
-    android:background="@color/Orange">
-    <ImageView
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"/>
-
+    >
     <EditText
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_account_box_black_24dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/txt_emailRegister"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -31,13 +29,18 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_below="@+id/textView2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:fontFamily="serif"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="156dp" />
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -46,12 +49,12 @@
 
         <Button
             android:id="@+id/btn_Register2"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@color/buttoncolor"
+            android:background="@drawable/buttonstyle"
             android:fontFamily="serif"
             android:gravity="center"
             android:onClick="Register_click"
@@ -62,11 +65,11 @@
 
         <Button
             android:id="@+id/forgotPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="65.04"
-            android:background="@color/buttoncolor"
+            android:background="@drawable/buttonstyle"
             android:fontFamily="serif"
             android:onClick="forgot_onclick"
             android:paddingLeft="2dp"

@@ -10,6 +10,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/White"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     tools:context="com.example.admin.firebasedemo.Logged_Activity">
     <LinearLayout
         android:orientation="horizontal"
@@ -26,10 +28,11 @@
             android:layout_marginLeft="35dp"
             android:fontFamily="serif"
             android:text="Xin Chào: "
-            android:textColor="@color/black"
+            android:textColor="#564378"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="163dp"
-            tools:layout_editor_absoluteY="16dp" />
+            tools:layout_editor_absoluteY="16dp"
+            />
 
         <TextView
             android:id="@+id/Email_logged"
@@ -39,7 +42,7 @@
             android:layout_gravity="center"
             android:fontFamily="serif"
             android:text="Email"
-            android:textColor="@color/black"
+            android:textColor="#00f"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="175dp"
             tools:layout_editor_absoluteY="60dp" />
@@ -53,10 +56,11 @@
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
             android:layout_marginRight="10dp"
-            android:background="@color/buttoncolor"
+            android:textColor="#fff"
+            android:background="@drawable/buttonstyle2"
             android:fontFamily="serif"
             android:onClick="browser_onclick"
             android:paddingLeft="8dp"
@@ -68,10 +72,11 @@
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="0.44"
-            android:background="@color/buttoncolor"
+            android:textColor="#fff"
+            android:background="@drawable/buttonstyle2"
             android:fontFamily="serif"
             android:onClick="myimage_onclick"
             android:paddingLeft="5dp"
@@ -96,7 +101,9 @@
         android:layout_height="wrap_content"
         android:hint="Nhập tên ảnh"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
     <EditText
         android:id="@+id/txtDescrip"
@@ -104,14 +111,18 @@
         android:layout_height="wrap_content"
         android:hint="Mô tả"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
     <EditText
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/check_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="false"
-        android:textColor="@color/black"
+        android:textColor="@color/pink"
         android:textSize="15sp" />
 
 
@@ -122,43 +133,46 @@
 
         <Button
             android:id="@+id/btn_check"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="25dp"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@color/buttoncolor"
+            android:background="@drawable/buttonstyle2"
             android:fontFamily="serif"
             android:text="Check"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:textColor="#fff"/>
 
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@color/buttoncolor"
+            android:background="@drawable/buttonstyle2"
             android:fontFamily="serif"
             android:onClick="Upload_onclick"
             android:text="Upload"
             android:textSize="13sp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:textColor="#fff"/>
 
         <Button
 
             android:id="@+id/button2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@color/buttoncolor"
+            android:background="@drawable/buttonstyle2"
             android:fontFamily="serif"
             android:onClick="showimg_onclick"
             android:text="Uploaded Images"
             android:textSize="13sp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:textColor="#fff"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -7,4 +7,6 @@
     <color name="White">#FFFFFF</color>
     <color name="buttoncolor">#3399FF</color>
     <color name="black">#000</color>
+    <color name="dark">#23283a</color>
+    <color name="pink">#fe104d</color>
 </resources>

@@ -5,24 +5,35 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.admin.firebasedemo.Register_Activity"
-    android:background="@color/Orange">
-
-    <ImageView
-        android:id="@+id/imageView"
+    tools:context="com.example.admin.firebasedemo.Register_Activity">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" />
+        android:orientation="vertical"
+        android:padding="90dp"
+        android:background="@color/dark"
+        android:layout_marginBottom="40dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:text="Welcome to Firebase"/>
 
+    </LinearLayout>
     <EditText
-
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_account_box_black_24dp"
         android:id="@+id/txt_emailLogin"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_below="@+id/textView3"
         android:ems="10"
         android:fontFamily="serif"
-        android:hint="Your Email"
+        android:hint="Email"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="31dp"
         tools:layout_editor_absoluteY="53dp" />
@@ -32,10 +43,15 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_below="@+id/textView4"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:fontFamily="serif"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="156dp" />
 
@@ -50,34 +66,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_passwordLogin"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            android:background="@color/buttoncolor"
+            android:background="@drawable/buttonstyle"
             android:fontFamily="serif"
             android:onClick="Login_Click"
             android:text="Login"
             android:textColor="@color/White"
             tools:layout_editor_absoluteX="147dp"
-            tools:layout_editor_absoluteY="214dp" />
+            tools:layout_editor_absoluteY="214dp"
+            />
 
         <Button
+
             android:id="@+id/NeedAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@color/buttoncolor"
+            android:background="@drawable/buttonstyle"
             android:fontFamily="serif"
             android:onClick="reg_onclick"
-            android:text="No account, Sign up!"
+            android:text="Sign up!"
             android:textColor="@color/White" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

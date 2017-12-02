@@ -42,8 +42,6 @@ public class Login_Activity extends AppCompatActivity {
         txtEmailLogin = (EditText) findViewById(R.id.txt_emailLogin);
         txtPassLogin= (EditText) findViewById(R.id.txt_passwordLogin);
         firebaseAuth=firebaseAuth.getInstance();
-        mImageView= (ImageView) findViewById(R.id.imageView);
-        mImageView.setImageResource(R.drawable.firebase);
         LoginManager.getInstance().logOut();
         callbackManager =CallbackManager.Factory.create();
         loginFb=findViewById(R.id.btnLoginFb);

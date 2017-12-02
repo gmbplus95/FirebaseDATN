@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Firebase</string>
+    <string name="app_name">Firebase DATN</string>
     <string name="facebook_app_id">1918251258438246</string>
     <string name="fb_login_protocol_scheme">fb1918251258438246</string>
-    <string name="sub_key">1597865d93874b32a9eee5981f91834c</string>
+    <string name="sub_key">68ed0aec71534901a1b15119cb50dee4</string>
     <string name="end_point">https://westcentralus.api.cognitive.microsoft.com/vision/v1.0</string>
 </resources>

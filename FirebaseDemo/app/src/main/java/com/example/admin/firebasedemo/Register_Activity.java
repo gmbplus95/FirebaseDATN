@@ -17,8 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
-
 public class Register_Activity extends AppCompatActivity {
     private EditText txtEmail;
     private EditText password;
@@ -32,8 +30,6 @@ public class Register_Activity extends AppCompatActivity {
         txtEmail= (EditText) findViewById(R.id.txt_emailRegister);
         password= (EditText) findViewById(R.id.txt_passwordRegister);
         firebaseAuth=FirebaseAuth.getInstance();
-        imageView= (ImageView) findViewById(R.id.imageView2);
-        imageView.setImageResource(R.drawable.firebase);
     }
     public void Register_click(View v){
         if(TextUtils.isEmpty(txtEmail.getText().toString()) )

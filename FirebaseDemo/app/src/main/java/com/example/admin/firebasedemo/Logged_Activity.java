@@ -59,6 +59,9 @@ public class Logged_Activity extends AppCompatActivity {
     public static final int REQUEST_CODE = 1234;
     private Button btn_check;
     private Button btn_upload;
+    public String[] texts = {
+            "fuck","ass","shit"
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,13 +181,25 @@ public class Logged_Activity extends AppCompatActivity {
 
     @SuppressWarnings("VisibleForTests")
     public void Upload_onclick(View view) {
-        if (TextUtils.isEmpty(txtImageName.getText().toString())) {
-            txtImageName.setError("Ban Chua Nhap Ten Anh");
+        String userInput1=txtImageName.getText().toString();
+        String userInput2=txtDesc.getText().toString();
+        if (TextUtils.isEmpty(userInput1)) {
+            txtImageName.setError("Vui lòng nhập tên ảnh");
             return;
-        } else  if (TextUtils.isEmpty(txtDesc.getText().toString())) {
-            txtDesc.setError("Ban Chua Nhap Ten Anh");
-            return;}
-
+        } else  if (TextUtils.isEmpty(userInput2)) {
+            txtDesc.setError("Vui lòng nhập mô tả");
+            return;
+        }
+        else if (userInput1.contains("fuck") || userInput1.contains("ass") || userInput1.contains("shit") || userInput1.contains("vãi") || userInput1.contains("đéo") )
+        {
+            txtImageName.setError("Tên ảnh chứa kí tự không phù hợp!");
+            return;
+        }
+        else if (userInput2.contains("fuck") || userInput2.contains("ass") || userInput2.contains("shit") || userInput2.contains("vãi") || userInput2.contains("đéo"))
+        {
+            txtDesc.setError("Mô tả ảnh chứa kí tự không phù hợp!");
+            return;
+        }
         else {
             if (imgUri != null) {
                 final ProgressDialog dialog = new ProgressDialog(this);
