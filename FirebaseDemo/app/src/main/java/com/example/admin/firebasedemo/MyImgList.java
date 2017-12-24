@@ -22,7 +22,7 @@ public class MyImgList extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private List<ImageUpload> imgList;
     private ListView lv;
-    private ImageListAdapter adapter;
+    private My_Image_List_Adapter adapter;
     private ProgressDialog progressDialog;
 
     @Override
@@ -46,7 +46,7 @@ public class MyImgList extends AppCompatActivity {
                     ImageUpload img=snapshot.getValue(ImageUpload.class);
                     imgList.add(img);
                 }
-                adapter=new ImageListAdapter(MyImgList.this,R.layout.item_layout,imgList);
+                adapter=new My_Image_List_Adapter(MyImgList.this,R.layout.my_item_layout,imgList);
                 lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

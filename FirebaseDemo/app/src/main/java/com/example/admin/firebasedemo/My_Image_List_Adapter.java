@@ -16,15 +16,15 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 /**
- * Created by Admin on 06-09-2017.
+ * Created by Admin on 09-12-2017.
  */
 
-public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
+public class My_Image_List_Adapter extends ArrayAdapter<ImageUpload> {
     private Activity context;
     private int resource;
     private List<ImageUpload> listImage;
 
-    public ImageListAdapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<ImageUpload> objects) {
+    public My_Image_List_Adapter(@NonNull Activity context, @LayoutRes int resource, @NonNull List<ImageUpload> objects) {
         super(context, resource, objects);
         this.context=context;
         this.resource=resource;
@@ -36,17 +36,15 @@ public class ImageListAdapter extends ArrayAdapter<ImageUpload> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
         View v=inflater.inflate(resource,null);
-        TextView txtName=v.findViewById(R.id.imgName);
-        ImageView img =v.findViewById(R.id.img_View);
-        TextView txtDesc=v.findViewById(R.id.imgDesc);
-        TextView txtEmail=v.findViewById(R.id.imgEmail);
+        TextView txtName=v.findViewById(R.id.imgName1);
+        ImageView img1 =v.findViewById(R.id.img_View1);
+        TextView txtDesc=v.findViewById(R.id.imgDesc1);
         txtName.setText("Tên ảnh: "+ listImage.get(position).getName());
         txtDesc.setText("Mô tả: " +listImage.get(position).getDescription());
-        txtEmail.setText("Upload By: "+ listImage.get(position).getEmail());
         Glide.with(context)
                 .load(listImage.get(position)
-                .getUrl())
-                .into(img);
+                        .getUrl())
+                .into(img1);
         return v;
     }
 

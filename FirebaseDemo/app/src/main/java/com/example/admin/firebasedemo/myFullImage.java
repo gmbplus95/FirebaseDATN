@@ -76,28 +76,6 @@ public class myFullImage extends AppCompatActivity {
         final String img = i.getStringExtra("img");
         final String name=i.getStringExtra("name");//lay img url
         switch (item.getItemId()) {
-            case R.id.download:
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                builder1.setMessage("Lưu ảnh ?");
-                builder1.setCancelable(true);
-                builder1.setPositiveButton(
-                        "Yes",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                new DownloadFileFromURL().execute(img);
-                            }
-                        });
-
-                builder1.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-                return true;
             case R.id.delete:
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setMessage("Bạn có muốn xóa ảnh?");
